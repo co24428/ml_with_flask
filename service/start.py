@@ -28,6 +28,13 @@ def langTypeDetect():
     else: # GET
         return render_template('index.html')
 
+
+
+@app.route('/jsptest', methods = ['GET', 'POST'])
+def jsptest():
+    return render_template('jsptest.html')
+# entry point가 생겼기 때문에 필요 없어짐..
 # 4. 서버 가동
+# run.py를 실행하면, __name__ => 'start(파일명)'이 된다.
 if __name__ == '__main__':
     app.run(debug=True)

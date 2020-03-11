@@ -5,7 +5,8 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
-        // 문서가 모두 로드되었다. -> 이벤트가 발생하면 자동호출
+        // 문서가 모두 로드되었다. -> 이벤트가 발생하면 자동호출 
+        // -> 화면이 보이기 직전!!!
         // DOM(Document Object MOdel) tree가 로드되었다.
         // $(document).(function (){
         $(document).ready(()=>{
@@ -16,6 +17,7 @@
     </script>
 </head>
 <body>
+    <button onclick="alert('hi')">인라인 클릭 - 버튼</button>
     <div>
         <fieldset>
             <textarea class='oriInput'>원문</textarea>
@@ -23,6 +25,8 @@
             <button id='LangDetectBtn'>언어감지</button>
             <br>
             <button>번역하기</button>
+            <br>
+            <textarea class='LangDetectresult'></textarea>
             <br>
             <textarea>번역문</textarea>
             <br>
@@ -64,6 +68,8 @@
                     'dataType':'json',                    // 서버가 json으로 응답한다.
                     'success':( resJson )=>{
                         console.log( '통신 성공', resJson)
+                        console.log( resJson.lang )
+                        $('.LangDetectresult').val(resJson.lang + " " + resJson.desc)
                     }, // 통신 성공 후
                     'error':function (err){
                         console.log('통신 실패', err)
